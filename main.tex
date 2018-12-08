@@ -15,6 +15,9 @@
 \usepackage{multirow}
 \usepackage{colortab}
 \usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{caption} % for \captionof
+
 \sisetup{mode=text, output-decimal-marker = {,}, per-mode = symbol, qualifier-mode = phrase, qualifier-phrase = { de }, list-units = brackets, range-units = brackets, range-phrase = --}
 \DeclareSIUnit[number-unit-product = \;] \atmosphere{atm}
 \DeclareSIUnit[number-unit-product = \;] \pound{lb}
@@ -98,23 +101,30 @@ Today we live in a world where technology drives our day-to-day activities and o
 
 Now that 3D printers have come into existence, human quest for making them faster, more accurate and durable takes them further than what they were designed to be. This process starts by identifying the performance parameters which can be optimized or made faster. One such parameter is time taken for printing a 3D object using a DIY 3D printer. 
 
-A 3D printer mainly consists of motors which drive a print head in 3-dimensional space. The print head is composed of heating chamber which melts plastic material to be drawn in lines to produce a 3D print layer by layer. Another special motor draws the plastic material (which exists in the form of a thread) into the heating chamber to melt newer plastic and flush out molten plastic. The image <TODO> shows a representational 3D printer which can be used to correlate the concepts presented in the paper.
+A 3D printer mainly consists of motors which drive a print head in 3-dimensional space. The print head is composed of heating chamber which melts plastic material to be drawn in lines to produce a 3D print layer by layer. Another special motor draws the plastic material (which exists in the form of a thread) into the heating chamber to melt newer plastic and flush out molten plastic. The image in \ref{fig:representational_3d_printer} shows a representational 3D printer which can be used to correlate the concepts presented in the paper.
 
 Most of the time consumed in a 3D printer comes from the speed at which the motors run & the speed at which the heating chamber melts plastic. The motors have a physical limit on their speed since they must be controlled at each step. Going beyond their speed limits in software results in them missing software step commands which results in deformed prints. Thus the available 3D printers are shipped with the software under utilizing the speed of motors to be safe from deformed prints. Prof. Okwudire algorithm combines advanced processing into 3D printer software which promises to increase the top speed at which 3D printers operate by pre-calculating jerks produced at top speed and optimizing that part in 3D printer software.
+
+\begin{center}
+   \includegraphics[scale=0.8]{images/cartesian-vs-delta.jpg}
+   \captionof{figure}{Representational 3D Printer}
+   \label{fig:representational_3d_printer}
+\end{center}
 
 \section{Motivation}
 During the research phase of the professor, the algorithm for optimizing the speed of 3D printing was designed initially in MatLab & Simulink software provided by MathWorks Inc. Because MatLab & Simulink are very high level languages they are pretty CPU intensive for the work. Since it is a very inefficient task to run an algorithm in MatLab during production deployment once prototyping in MatLab works as expected, I took up this project to convert the implementation from MatLab to C++ and apply parallel computing algorithms for the processing part to improve the performance. Since I worked in the 3D project team's embedded systems implementation part, I'm very well aware of the concepts used in the whole project. This also forms a great optimization project to understand and implement parallelization concepts since computation time can be optimized using GPU processing.
 
 \section{Related Work}
+Since this project is a first of the kind, there is no previous work related to GPU optimization for 3D printer algorithm. A member from the Prof. Okwudire team tried to use multiprocessing library from Python to improve the performance of the algorithm, but it still falls short of the required speed ups which can be obtained using a GPU.
 
+\section{Serial Architecture and Implementation}
+The basic architecture of the project involves taking a 3D printer Gcode file and producing a binary output file which is used to drive the stepper motors. A Gcode file is a text file which contains the sequence of positions and directions for the different axes of the 3D printer where it needs to fill the molten plastic material to construct the 3D object. In a conventional 3D printer, the Gcode file is processed by a small embedded micro-controller which decides the commands to be sent to each of the axis motors step by step. The micro-controller generates a step and direction command for each stepper motor in the 3D printer.
 
-\section{Architecture}
-
-\section{Implementation}
+For the implementation of faster 3D prints, Prof. Okwudire's algorithm sits between the Gcode file and the stepper command generation part to process the Gcode to generate the stepper commands. The architecture image as shown in <TODO> gives an overview of the process that is involved in the generation of the final ".bin" file. 
 
 \section{Validation and Verification}
 
-\section{Parallelization of Algorithm}
+\section{Parallel Architecture and Implementation}
 
 \section{Performance Results}
 
