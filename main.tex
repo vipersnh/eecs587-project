@@ -120,7 +120,13 @@ Since this project is a first of the kind, there is no previous work related to 
 \section{Serial Architecture and Implementation}
 The basic architecture of the project involves taking a 3D printer Gcode file and producing a binary output file which is used to drive the stepper motors. A Gcode file is a text file which contains the sequence of positions and directions for the different axes of the 3D printer where it needs to fill the molten plastic material to construct the 3D object. In a conventional 3D printer, the Gcode file is processed by a small embedded micro-controller which decides the commands to be sent to each of the axis motors step by step. The micro-controller generates a step and direction command for each stepper motor in the 3D printer.
 
-For the implementation of faster 3D prints, Prof. Okwudire's algorithm sits between the Gcode file and the stepper command generation part to process the Gcode to generate the stepper commands. The architecture image as shown in <TODO> gives an overview of the process that is involved in the generation of the final ".bin" file. 
+For the implementation of faster 3D prints, Prof. Okwudire's algorithm sits between the Gcode file and the stepper command generation part to process the Gcode to generate the stepper commands. The architecture image as shown in \ref{fig:serial_algorithm} gives an overview of the process that is involved in the generation of the final ".bin" file. 
+
+\begin{center}
+   \includegraphics[scale=0.25]{images/algorithm.pdf}}
+   \captionof{figure}{Serial Algorithm Implementation}
+   \label{fig:serial_algorithm}
+\end{center}
 
 \section{Validation and Verification}
 
