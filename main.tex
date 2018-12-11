@@ -158,13 +158,15 @@ The algorithm was executed on three different input Gcode files as shown in the 
     \item \textbf{Another Aerofoil CAD Design:} Containing 1000 Gcodes
 \end{enumerate}
 
-The table below shows the performance obtained by using the hybrid design of using multiple threads and GPU processing for the 3D printer Gcode processing.
+The table \ref{fig:performance_results} shows the performance obtained by using the hybrid design of using multiple threads and GPU processing for the 3D printer Gcode processing.
 
 \begin{center}
-   \includegraphics[scale=0.45]{images/}
-   \captionof{figure}{Paralleled Algorithm Implementation}
-   \label{fig:parallel_algorithm}
+   \includegraphics[scale=1]{images/performance-results.pdf}
+   \captionof{figure}{Performance Results}
+   \label{fig:performance_results}
 \end{center}
+
+The performance varies from a speed up of 
 
 \section{Conclusion}
 The optimized implementations presented in this paper definitely prove to be useful in the 3D printing and DIY community. As can be seen from the results, the performance of the said algorithm increased by many folds by converting it from a Python based implementation to a C++ based implementation. This performance was further improved by adding in CUDA framework. The implementation provided in this paper proves as a proof of concept for optimization of 3D printer related software algorithms to utilize GPU for faster processing. It also explores the repeated execution of certain instructions which makes it easier for parallelization of Gcode to stepper motor commands.
